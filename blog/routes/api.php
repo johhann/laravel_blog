@@ -17,16 +17,16 @@ use app\Http\Controllers\PostController;
 */
 
 //public routes
-Route::Get('/posts', [PostController::class, 'index']);
-Route::Get('/posts/{id}', [PostController::class, 'show']);
-Route::Post('/login', [UserController::class, 'login']);
-Route::Post('/register', [UserController::class, 'register']);
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{id}', [PostController::class, 'show']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
 
 
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    Route::Post('/posts', [PostController::class, 'store']);
-    Route::Put('/post/{id}', [PostController::class, 'update']);
-    Route::Delete('/post/{id}', [PostController::class, 'destroy']);
-    Route::Get('/logout', [UserController::class, 'logout']);
+    Route::post('/posts', [PostController::class, 'store']);
+    Route::put('/post/{id}', [PostController::class, 'update']);
+    Route::delete('/post/{id}', [PostController::class, 'destroy']);
+    Route::get('/logout', [UserController::class, 'logout']);
 });
