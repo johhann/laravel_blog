@@ -23,6 +23,10 @@ Route::Post('/login', [UserController::class, 'login']);
 Route::Post('/register', [UserController::class, 'register']);
 
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+//protected routes
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::Post('/posts', [PostController::class, 'store']);
+    Route::Put('/post/{id}', [PostController::class, 'update']);
+    Route::Delete('/post/{id}', [PostController::class, 'destroy']);
+    Route::Get('/logout', [UserController::class, 'logout']);
+});
