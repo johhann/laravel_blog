@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return Post::all();
     }
 
     /**
@@ -35,7 +35,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        return Post::create($request->all());
     }
 
     /**
@@ -46,7 +51,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return Product::find($id);
     }
 
     /**
@@ -69,7 +74,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post = Post::find($id);
+        $post->update($request->all());
+        return $post;
     }
 
     /**
@@ -80,6 +87,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        return Post::destroy($post);
     }
 }
